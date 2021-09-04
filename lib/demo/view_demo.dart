@@ -230,6 +230,7 @@ class GridViewBuilderDemo extends StatelessWidget {
       // scrollDirection: Axis.horizontal, //排列方式 ，默认水平
       //SliverGridDelegateWithFixedCrossAxisCount
       // SliverGridDelegateWithMaxCrossAxisExtent
+      padding: EdgeInsets.all(8.0), //GridView外边距
       gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
         crossAxisCount: 2, //交叉轴数量 // SliverGridDelegateWithFixedCrossAxisCount
         //maxCrossAxisExtent:
