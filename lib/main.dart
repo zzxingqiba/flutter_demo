@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_demo/demo/drawer_demo.dart';
+import 'package:flutter_demo/demo/sliver_demo.dart';
 import 'package:flutter_demo/demo/view_demo.dart';
 
 void main() {
@@ -27,6 +28,7 @@ class Home extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
+      initialIndex: 1,
       length: 3,
       child: Scaffold(
         backgroundColor: Colors.grey[200], //界面颜色
@@ -70,11 +72,7 @@ class Home extends StatelessWidget {
         body: TabBarView(
           children: [
             ViewDemo(),
-            Icon(
-              Icons.local_hospital_sharp,
-              size: 128.0,
-              color: Colors.black12,
-            ),
+            SliverDemo(),
             Icon(
               Icons.local_bar_outlined,
               size: 128.0,
