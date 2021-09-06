@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_demo/demo/about_detail.dart';
 
 class SliverDemo extends StatelessWidget {
   const SliverDemo({Key? key}) : super(key: key);
@@ -90,11 +91,37 @@ class SliverListDemo extends StatelessWidget {
               shadowColor: Colors.grey.withOpacity(0.5),
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(10),
-                child: Container(
-                  child: Image.network(
-                    'https://img1.baidu.com/it/u=2233362797,2905857249&fm=26&fmt=auto&gp=0.jpg',
-                    fit: BoxFit.cover, //填充
-                  ),
+                child: Stack(
+                  children: [
+                    Container(
+                      child: AspectRatio(
+                        // AspectRatio作用于父控件，根据aspectRatio计算父控件的宽或者高，AspectRatio的子控件将填充满父控件，子控件的宽高无效
+                        aspectRatio: 16 / 9,
+                        child: Image.network(
+                          'https://img1.baidu.com/it/u=2233362797,2905857249&fm=26&fmt=auto&gp=0.jpg',
+                          fit: BoxFit.cover, //填充
+                        ),
+                      ),
+                    ),
+                    Positioned.fill(
+                      child: Material(
+                        color: Colors.transparent,
+                        child: InkWell(
+                          //溅墨效果区域  InkWell用户点击出现水波纹效果
+                          splashColor: Colors.white.withOpacity(0.3), //溅墨颜色
+                          highlightColor: Colors.white.withOpacity(0.1), //高亮颜色
+                          onTap: () {
+                            Navigator.of(context).push(
+                              MaterialPageRoute(
+                                builder: (BuildContext context) =>
+                                    AboutDetail(title: '索尔$index'),
+                              ),
+                            );
+                          },
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
               ),
             ),

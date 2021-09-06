@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:flutter_demo/demo/about_detail.dart';
 import 'package:flutter_demo/demo/drawer_demo.dart';
 import 'package:flutter_demo/demo/navigator_demo.dart';
 import 'package:flutter_demo/demo/sliver_demo.dart';
@@ -6,6 +8,12 @@ import 'package:flutter_demo/demo/view_demo.dart';
 
 void main() {
   runApp(MyApp());
+  //设置statusBar状态栏为透明 形成沉浸式
+  SystemChrome.setSystemUIOverlayStyle(
+    SystemUiOverlayStyle(
+      statusBarColor: Colors.transparent,
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
@@ -20,7 +28,7 @@ class MyApp extends StatelessWidget {
         splashColor: Color.fromRGBO(255, 255, 255, 0), //水波纹颜色  两值相等则去除水波纹效果
       ),
       routes: {
-        '/': (context) => NavigatorDemo(),
+        '/': (context) => Home(),
         '/about': (context) => PageDemo(title: 'About'), //配置路由
       },
       // home: NavigatorDemo(), //设置跟路由 如果不使用这个 请使用下面配置路由的默认根路由
