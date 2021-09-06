@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_demo/demo/drawer_demo.dart';
+import 'package:flutter_demo/demo/navigator_demo.dart';
 import 'package:flutter_demo/demo/sliver_demo.dart';
 import 'package:flutter_demo/demo/view_demo.dart';
 
@@ -18,7 +19,12 @@ class MyApp extends StatelessWidget {
         highlightColor: Color.fromRGBO(255, 255, 255, 0), //点击后的颜色
         splashColor: Color.fromRGBO(255, 255, 255, 0), //水波纹颜色  两值相等则去除水波纹效果
       ),
-      home: Home(),
+      routes: {
+        '/': (context) => NavigatorDemo(),
+        '/about': (context) => PageDemo(title: 'About'), //配置路由
+      },
+      // home: NavigatorDemo(), //设置跟路由 如果不使用这个 请使用下面配置路由的默认根路由
+      initialRoute: '/',
     );
   }
 }
