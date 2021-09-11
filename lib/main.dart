@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_demo/demo/about_detail.dart';
 import 'package:flutter_demo/demo/drawer_demo.dart';
 import 'package:flutter_demo/demo/form.demo.dart';
+import 'package:flutter_demo/demo/materialComponents.dart';
 import 'package:flutter_demo/demo/navigator_demo.dart';
 import 'package:flutter_demo/demo/sliver_demo.dart';
 import 'package:flutter_demo/demo/view_demo.dart';
@@ -31,10 +32,11 @@ class MyApp extends StatelessWidget {
       routes: {
         '/': (context) => Home(),
         '/about': (context) => PageDemo(title: 'About'), //配置路由
-        '/form': (context) => FormDemo()
+        '/form': (context) => FormDemo(),
+        '/materialComponents': (context) => MaterialComponents(),
       },
       // home: NavigatorDemo(), //设置跟路由 如果不使用这个 请使用下面配置路由的默认根路由
-      initialRoute: '/form',
+      initialRoute: '/materialComponents',
     );
   }
 }
