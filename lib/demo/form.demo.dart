@@ -83,6 +83,111 @@ class _TextFieldDemoState extends State<TextFieldDemo> {
               fillColor: Colors.green, //设置输入框颜色
             ),
           ),
+          SizedBox(
+            height: 20,
+          ),
+          RegisterForm(),
+        ],
+      ),
+    );
+  }
+}
+
+class RegisterForm extends StatefulWidget {
+  RegisterForm({Key? key}) : super(key: key);
+
+  @override
+  _RegisterFormState createState() => _RegisterFormState();
+}
+
+class _RegisterFormState extends State<RegisterForm> {
+  final registerFormKey = GlobalKey<FormState>();
+  late String userName, password;
+
+  String? validateUserName(value) {
+    if (value.isEmpty) {
+      return 'UserNmae is required';
+    } else {
+      return null;
+    }
+  }
+
+  String? validatePassWord(value) {
+    if (value.isEmpty) {
+      return 'UserNmae is required';
+    } else {
+      return null;
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Form(
+      key: registerFormKey,
+      child: Column(
+        children: [
+          TextFormField(
+            decoration: InputDecoration(
+              labelText: 'UserName',
+              helperText: '',
+            ),
+            onSaved: (value) {
+              userName = value!;
+            },
+            validator: validateUserName,
+            autovalidateMode:
+                // onUserInteraction用户输入以后开始校验
+                AutovalidateMode.always, //控制触发时机 是个枚举类 可以点进去看
+          ),
+          TextFormField(
+            obscureText: true, //密码样式的hint
+            decoration: InputDecoration(
+              labelText: 'PassWord',
+              helperText: '2223333', //提示 在输入框的下面
+            ),
+            onSaved: (value) {
+              password = value!;
+            },
+            validator: validatePassWord,
+          ),
+          Container(
+            width: double.infinity,
+            child: ElevatedButton(
+              style: ButtonStyle(
+                backgroundColor:
+                    MaterialStateProperty.all(Colors.blue), //设置背景颜色
+              ),
+              child: Text(
+                '登录',
+                style: TextStyle(color: Colors.white),
+              ),
+              onPressed: () {
+                bool? isSuccess = registerFormKey.currentState?.validate();
+                if (isSuccess == null || !isSuccess) {
+                  return null;
+                }
+                //调用key找到form上的currentState的onSaved方法，触发调用
+                registerFormKey.currentState?.save();
+                //底部弹框
+                Scaffold.of(context).showBottomSheet(
+                  (context) => BottomSheet(
+                    onClosing: () {
+                      Navigator.pop(context);
+                    },
+                    builder: (BuildContext context) {
+                      return Container(
+                        width: double.infinity,
+                        color: Theme.of(context).primaryColor,
+                        child: new Text('$userName$password'),
+                      );
+                    },
+                  ),
+                );
+                print('$userName');
+                print('$password');
+              },
+            ),
+          )
         ],
       ),
     );
